@@ -8,6 +8,7 @@ export default class SearchBar extends Component {
 
     // Take the existing function, bind it, and replace the current function
     this.onInputChange = this.onInputChange.bind(this);
+    // 3. Chances are you need to bind it
   }
 
 // All DOM event handlers (onChange, onClick)
@@ -18,15 +19,22 @@ export default class SearchBar extends Component {
     // requires "bind" to be called
     // otherwise, I have a strange context
     this.setState({ term: event.target.value });
+    // 2. that makes a reference to "this"...
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    // We need to fetch data here
   }
 
   render() {
     return (
-      <form className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group">
         <input
           placeholder = "Get a five day forecast in your favourite cities"
           className = "form-control"
           value = {this.state.term}
+          // 1. If you have a callback...
           onChange={this.onInputChange} />
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Submit</button>
