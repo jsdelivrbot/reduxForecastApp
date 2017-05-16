@@ -8,7 +8,6 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 export function fetchWeather(city) {
   const url = `${ROOT_URL}&q=${city},us`;
   const request = axios.get(url);   // axios returns a promise, it doesn't contain our data
-  console.log('Request:', request);
 
   return {
     // always an action needs to have a type
